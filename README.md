@@ -17,8 +17,9 @@ Create your account, take note of the password and username.
 
 Once your have access to your server/interface: Create a database (for me "user_db"). 
 
-Now using your IDE i.e VS Code open i. register_form.php and take note of parameters inside the user_form1 brackets as shown: user_form1(name, email, password, user_type, org_name, org_address)
+Now using your IDE i.e VS Code open:
 
+                                    i. register_form.php and take note of parameters inside the user_form1 brackets as shown: user_form1(name, email, password, user_type, org_name, org_address)
                                     ii. process_form1.php and take note of the parameters inside the recipient_info brackets as shown: recipient_info (organization, address, email, items, description)
                                     
                                     iii. submit_donations2.php and take note of the parameters inside the donations brackets as shown: donations (name, contact, location) VALUES ('$name', '$contact', '$location')";
