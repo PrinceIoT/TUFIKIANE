@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .popup-container {
+            width: 300px;
+            height: 300px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="popup-container">
+    <h2>Let's Connect</h2>
+    <form id="donationForm" action="submit_donations2.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" required><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <input type="submit" value="Donate Now">
+    </form>
+</div>
+
+<div id="successMessage" style="display: none;">
+    Form submitted successfully. Wait for email pop to send! 
+</div>
+
+<script>
+    document.getElementById("donationForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Get form data
+        var name = document.getElementById("name").value;
+        var contact = document.getElementById("contact").value;
+        var location = document.getElementById("location").value;
+
+        // Show success message
+        document.getElementById("successMessage").style.display = "block";
+        
+        // Delay redirection
+        setTimeout(function() {
+            window.location.href = "admin_page.php";
+        }, 1000);
+
+        // Send email notification
+        var recipientEmail = "dishanotieno19@gmail.com"; // Replace with recipient's email address
+        var subject = "Donation Notification";
+        var message = "Hi, recipient, " + name + " wants to donate to you. Link up with him/her with contact: " + contact + " and location: " + location + " attached.";
+        var mailtoLink = "mailto:" + recipientEmail + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(message);
+
+        // Automatically send the email
+        var emailWindow = window.open(mailtoLink, "_blank");
+        if (!emailWindow || emailWindow.closed || typeof emailWindow.closed == 'undefined') {
+            alert("Please allow popups for this website to send the email.");
+        }
+    });
+</script>
+
+</body>
+</html>
